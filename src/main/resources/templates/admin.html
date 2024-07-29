@@ -10,42 +10,44 @@ layout:decorate="~{layout/default_layout2}">
    background-image:url('/image/balloon.jpg')
    }
    </style>
-   <!-- 이미지자동변경 -->
-   <!-- <style>
-  body {
-    margin: 0;
-    padding: 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    transition: background-image 1s ease-in-out;
-  }
-</style>
-<script>
-  const images = [
-    '/image/balloon.jpg',
-    '/image/road.jpg',
-    '/image/1.jpg',
-    '/image/2.jpg',
-  ];
-  let currentIndex = 0;
 
-  function changeBackground() {
-    const imageUrl = images[currentIndex];
-    document.body.style.backgroundImage = `url(${imageUrl})`;
+    <div class="form-group">
+        <!--     <h1>Image Upload</h1> -->
+        <form id="lunchMenu-my-form">
+            <div id=lunchMenu-inputForm>
+                <label >미니 실습 LunchMenu 해보기.</label>
+                <!-- <input  class="form-control"   id="dbId" name="dbId" placeholder="1 형식 입력"></input> -->
+                <input class="form-control"   id="lunchMenuTitle" name="lunchMenu"placeholder="lunchMenu 입력해주세요"></input>
+                <br>
+                <input class="form-control"   id="lunchMenuWriter" name="lunchWriter" placeholder="lunchWriter 입력해주세요"></input>
+                <br>
+                <div class="form-group">
+                    <label for="lunchMenu-image">Choose an image:</label>
+                    <input type="file" id="lunchMenu-image" name="file" class="form-control-file" onchange="loadImageLunchMenu()">
+                </div>
+                <br>
+                <br>
+                <button id="lunchMenu-uploadDBWithImageBtn" type="submit" class="btn btn-primary" >추가하기</button>
+                <div>
+                    <img id="lunchMenu-preview" src="" alt="Image Preview">
+                    <video id="lunchMenu-previewVideo" controls src=""></video>
+                </div>
+                <br>
+            </div>
 
-    currentIndex = (currentIndex + 1) % images.length;
-  }
+        </form>
+    </div>
 
-  setInterval(changeBackground, 3000); // 5초마다 배경 변경
-</script> -->
-   
-   <!-- <h2>Springboot 2.7.8, AWS Lightsail AMI2, docker mongodb 6.0.4, SSL 설정, 도메인설정.</h2>
-   <h2>Spring Security 적용, thymeleaf 적용.</h2> -->
+    <h2>미니실습 전체 목록</h2>
 
-  <!-- 	<div class="form-group" >
+    <!--새로고침 후 적용되어서 별로-->
+    <!--<h3>전체목록 갯수: <span th:text="${count}"></span> </h3>-->
 
-    		<button id="dbInsertBtn" class="btn btn-primary">디비추가</button>
-    	</div>-->
+    <!--데이터만 변경하기.-->
+    <h3>전체 count : <span id="lunchMenufindAllMemoCount"></span></h3>
+
+    <div id="lunchMenuDbResult"></div>
+
     <br>
     <div class="form-group">
         <!--     <h1>Image Upload</h1> -->
