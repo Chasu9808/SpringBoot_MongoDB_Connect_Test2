@@ -4,6 +4,7 @@ $(document).ready(function () {
     $('#lunchMenu-preview').hide();
     $('#lunchMenu-previewVideo').hide();
     initLunchMenu()
+    //미니 실습 버전 추가 부분
     init()
     // FindAllFileName()
     // FindOneFileName("childLook.gif")
@@ -55,6 +56,7 @@ $('#scroll-to-top').click(function () {
 });
 
 // 미니실습 풀이용.
+//미니 실습 버전 추가 부분
 function loadImageLunchMenu() {
 
     let input = document.getElementById("lunchMenu-image");
@@ -82,6 +84,7 @@ function loadImageLunchMenu() {
         reader.readAsDataURL(input.files[0]);
     }
 }
+//미니 실습 버전 추가 부분
 
 // 파일 선택시, 선택된 이미지 미리보기 , 로드이미지 함수 출력시 해당 아이디 보여줌.
 // 평소에는 숨김.
@@ -179,7 +182,7 @@ function FindOneFileName(imageName1) {
         })
 };
 
-
+//미니 실습 버전 추가 부분
 // 미니 실습 런치 메뉴 전체 리스트
 var initLunchMenu = function () {
     $.ajax({

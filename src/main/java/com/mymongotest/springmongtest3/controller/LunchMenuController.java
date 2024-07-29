@@ -42,7 +42,7 @@ public class LunchMenuController {
     @Autowired
     private GridFsTemplate gridFsTemplate;
 
-
+    //실제사용
     @ResponseBody
     @PostMapping("/insertLunchMenuWithImage")
     public ResponseEntity insertLunchMenuWithImage(@RequestPart(value = "key") LunchMenu lunchMenu,
@@ -58,6 +58,7 @@ public class LunchMenuController {
             String str = filename.substring(filename.lastIndexOf(".") + 1);
             if (!str.equals("mp4") && !str.equals("mov") && !str.equals("MOV") && !str.equals("avi") && !str.equals("wmv")) {
 
+                // 전달 받은 이미지를 , 리사이즈에서, 다시 이미지 재정의
                 InputStream inputStream = file.getInputStream();
                 //썸네일 작업
                 BufferedImage bo_img = ImageIO.read(inputStream);
@@ -76,11 +77,17 @@ public class LunchMenuController {
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                 ImageIO.write(resizedImage, "jpg", outputStream);
                 InputStream reSizeInputStream = new ByteArrayInputStream(outputStream.toByteArray());
+                // 전달 받은 이미지를 , 리사이즈에서, 다시 이미지 재정의
 
+//  몽고 디비에 해당 데이터를 저장하는 코드
+// 몽고디비에 바이트 단위로 이미지 저장하는 코드
                 ObjectId objectId = gridFsTemplate.store(reSizeInputStream, file.getOriginalFilename(), file.getContentType());
+                // 몽고 디비에 저장된 이미지 파일 오브젝트 아이디를 가져오기.
                 String objectIdToString = objectId.toString();
 //		System.out.println("objectIdToString : " + objectIdToString);
                 String imageFileName = file.getOriginalFilename();
+                // 몽고 디비의 데이터 모델링, 마치 RDBMS 외래키 사용 하듯이,
+                // 이미지 물리 파일의 저장한 아이디만 가지고 있기.
                 lunchMenu.setImageFileObjectId(objectIdToString);
                 lunchMenu.setImageFileName(imageFileName);
             } else {
@@ -114,7 +121,7 @@ public class LunchMenuController {
     }
 
 
-
+    //실제사용
     @ResponseBody
     @GetMapping("/findAllLunchMenu")
     public List<LunchMenu> findAllLunchMenu() {
@@ -122,7 +129,7 @@ public class LunchMenuController {
         return lunchMenuList;
     }
 
-
+//실제사용
     @ResponseBody
     @DeleteMapping("/dbDeleteLunchMenu/{id}/{imageFileName}")
     public String delete(@PathVariable String id, @PathVariable String imageFileName) {

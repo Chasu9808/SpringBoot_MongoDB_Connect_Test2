@@ -39,7 +39,10 @@ public class LunchMenuService {
     public void lunchMenuInsert(LunchMenu lunchMenu) {
         Date date = new Date();
         String converDate = dateToString(date);
+        // 기존에 , 화면에서 음식 메뉴, 작성자 문자열은 이미 받아 왔고,
+        // 날짜 , 시간 만 추가
         lunchMenu.setDateField(converDate);
+        // 실제 몽고디비에 반영함.
         mongoTemplate.insert(lunchMenu);
     }
 
