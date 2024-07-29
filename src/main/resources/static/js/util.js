@@ -177,8 +177,14 @@ var init = function(){
 				console.log("val.dateField: "+ val.dateField)
 				var id2= val.id
 				console.log(typeof(id2))*/
+				// val.imageFileName이 문자열인지 확인
+				var imageFileName = String(val.imageFileName);
+
+// 공백을 %20으로 대체
+				imageFileName = imageFileName.replace(/ /g, "%20");
+				console.log(imageFileName)
 				str += "<tr>"
-				str += "<td>" +"<img src=/images/"+val.imageFileName.replace(" ", "%20")+ "></td>"
+				str += "<td>" +"<img src=/images/"+imageFileName+ "></td>"
 				str += "<td>" + val.title + "</td>"
 				str += "<td>" + val.message + "</td>"
 				str += "<td>" + val.dateField + "</td>"
